@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   android:padding="16dp"
+    >
+
+    <TextView
+        android:id="@+id/article_heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto"
+        android:padding="10dp"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:textStyle="bold"
+        android:text="@string/article_title"/>
+
+    <TextView
+        android:id="@+id/article_subheading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/article_heading"
+        android:padding="10dp"
+        android:textAppearance="@android:style/TextAppearance"
+        android:text="@string/article_subtitle"
+        android:fontFamily="@font/roboto"
+        />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/article_subheading"
+        >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/article_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:lineSpacingExtra="5sp"
+                android:text="@string/article_text"
+                android:padding="10dp"
+                />
+            <TextView
+                android:id="@+id/article_subheading_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/article_1"
+                android:padding="10dp"
+                android:textAppearance="@android:style/TextAppearance"
+                android:text="@string/article_subtitle_1"
+                android:fontFamily="@font/roboto"
+                />
+            <TextView
+                android:id="@+id/article_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/article_subheading_1"
+                android:fontFamily="@font/roboto"
+                android:lineSpacingExtra="5sp"
+                android:text="@string/article_text_1"
+                android:padding="10dp"
+                />
+            <TextView
+                android:id="@+id/article_subheading_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/article_2"
+                android:padding="10dp"
+                android:textAppearance="@android:style/TextAppearance"
+                android:text="@string/article_subtitle_2"
+                android:fontFamily="@font/roboto"
+                />
+            <TextView
+                android:id="@+id/article_text_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/article_subheading_2"
+                android:fontFamily="@font/roboto"
+                android:lineSpacingExtra="5sp"
+                android:text="@string/article_text_2"
+                android:padding="10dp"
+                />
+
+
+
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

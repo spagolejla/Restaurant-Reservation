@@ -1,0 +1,82 @@
+<resources>
+    <string name="app_name">MyApp</string>
+
+    <string name="hello_world">Hello world!</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="title">Title</string>
+
+    <string name="description">Description</string>
+
+    <string name="add_image">addImage</string>
+
+    <string name="delete_image">deleteImage</string>
+
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="thumbnail">thumbnail</string>
+
+    <string name="delete">Delete</string>
+
+    <string name="search">Search</string>
+
+    <string name="settings">Settings</string>
+
+    <string name="edit">Edit</string>
+
+    <string name="exit">Exit</string>
+
+
+    <string name="Odjava">Odjava</string>
+
+    <string name="Restorani">Restorani</string>
+    <string name="Rezervacije">Rezervacije</string>
+    <string name="KorisnickiProfil">Korisnički profil</string>
+    <string name="Pomoc">Pomoć</string>
+    <string name="Exit">Exit</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="article_title">Dobrodošli u Restaurant Reservation</string>
+    <string name="article_subtitle">Kratki vodić kroz aplikaciju..</string>
+    <string name="article_text">
+        Aplikacija Restaurant Reservation Vam pomaže da lakše pronađete i rezervišete restoran.
+        Restaurant Reservation nudi veliki izbor restorana. Naša misija je da bi pomogli restoranima svih veličina,
+        kako bi omogućili restoranima da pronađu i rezervišu savršeni sto za svaku priliku,
+        naša priča je jedna od ljudskih veza - među restoranima i restoranima, između restorana i njihovih zajednica.
+ </string>
+
+    <string name="article_subtitle_1">Pregled restorana</string>
+    <string name="article_text_1">
+        Nakon logovanja na glavnom aktivitiju su prikazani svi dostupni restorani, koji se mogu prelistati, nakon što
+        odaberete određeni restoran moguće je pogledati njegove detalje kako bi se odlučili da li baš taj restoran
+        želite rezervisati.
+
+    </string>
+    <string name="article_subtitle_2">Rezervacija restorana</string>
+    <string name="article_text_2">
+        Sa navigacijskog menija je potrebno odabrati opciju Rezervacije. Nakon što ste odabrali opciju Rezervacije prikazat će vam
+        se sve rezervacije koje ste ranije rezervisali. Klikom na dugme Add otvara se forma za dodavanje nove rezervacije. Ukoliko ste
+        sva polja ispravno popunili kliknite na opciju Rezervisi i vaša rezervacija će biti evidentirana.
+
+    </string>
+    <string name="title_activity_login">Prijavi se</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
+
+</resources>

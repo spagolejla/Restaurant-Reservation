@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.RestoranDetaljiFragment"
+    >
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".fragments.RestoranDetaljiFragment">
+
+        <!-- TODO: Update blank fragment layout -->
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="match_parent"
+            android:layout_height="189dp"
+
+
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/resraurant_detail" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnIdiNaRezervacije"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="29dp"
+            android:layout_marginTop="161dp"
+            android:clickable="true"
+            android:src="@drawable/ic_library_add_white_24dp" />
+        <TextView
+            android:id="@+id/resTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_800"
+            android:fontFamily="@font/roboto"
+            android:padding="10dp"
+            android:textAppearance="@android:style/TextAppearance.Large"
+            android:textStyle="bold"
+            android:text="Restoran Han Konjic"
+            android:layout_below="@+id/img"
+            />
+        <TextView
+            android:id="@+id/resDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_800"
+            android:fontFamily="@font/roboto"
+            android:padding="10dp"
+            android:textAppearance="@android:style/TextAppearance"
+
+            android:text="Posjetite nas i uvjerite se u ukus i kvalitet naše hrane, koju pripremamo sa velikim zadovoljstvom samo za Vas. Osim kvalitetne i ukusno pripremljene hrane trudimo se da se svaki posjetitelj u našem restoranu osjeća opušteno i zadovoljno."
+            android:layout_below="@+id/resTitle"
+            />
+
+        <TextView
+            android:id="@+id/resKontaktPodaci"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_800"
+            android:fontFamily="@font/roboto"
+            android:padding="10dp"
+            android:textAppearance="@android:style/TextAppearance"
+            android:textStyle="bold"
+            android:text="Kontakt podaci"
+            android:layout_below="@+id/resDescription"
+            />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/ic_local"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_place_black_24dp"
+            android:layout_below="@+id/resKontaktPodaci"
+            android:layout_margin="10dp"
+            />
+        <TextView
+            android:id="@+id/resAdresa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_800"
+            android:fontFamily="@font/roboto"
+            android:padding="10dp"
+            android:layout_toRightOf="@+id/ic_local"
+            android:text="Gornje polje 11"
+            android:layout_below="@+id/resKontaktPodaci"
+            android:layout_marginTop="5dp"
+
+            />
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/ic_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_phone_black_24dp"
+            android:layout_below="@+id/ic_local"
+            android:layout_margin="10dp"
+            />
+        <TextView
+            android:id="@+id/resTelefon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_800"
+            android:fontFamily="@font/roboto"
+            android:padding="10dp"
+android:layout_toRightOf="@id/ic_phone"
+
+            android:text="036/555-788"
+            android:layout_below="@+id/resAdresa"
+            android:layout_marginTop="5dp"
+
+            />
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/ic_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_email_black_24dp"
+            android:layout_below="@+id/ic_phone"
+            android:layout_margin="10dp"
+
+            />
+        <TextView
+            android:id="@+id/resMail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_800"
+            android:fontFamily="@font/roboto"
+            android:padding="10dp"
+            android:layout_toRightOf="@id/ic_email"
+            android:text="han@gmail.com"
+            android:layout_below="@+id/resTelefon"
+            android:layout_marginTop="5dp"
+            />
+
+
+
+    </RelativeLayout>
+</ScrollView>

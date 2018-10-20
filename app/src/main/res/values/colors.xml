@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#009688</color>
+    <color name="colorPrimaryDark">#00796B</color>
+    <color name="colorPrimaryLight">#B2DFDB</color>
+
+    <color name="colorAccent">#FFC107</color>
+
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSecondaryText">#757575</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#BDBDBD</color>
+    <color name="white">#FFFFFF</color>
+    <color name="overflowMenuBg">#fffcfff6</color>
+    <color name="login_background">#fefefb</color>
+
+    <!-- Grey Color Shades -->
+
+
+    <color name="grey_25">#FDFDFD</color>
+
+    <color name="grey_50">#FAFAFA</color>
+
+    <color name="grey_100">#F5F5F5</color>
+
+    <color name="grey_200">#EEEEEE</color>
+
+    <color name="grey_300">#E0E0E0</color>
+
+    <color name="grey_400">#BDBDBD</color>
+
+    <color name="grey_500">#9E9E9E</color>
+
+    <color name="grey_600">#757575</color>
+
+    <color name="grey_700">#616161</color>
+
+    <color name="grey_800">#424242</color>
+
+</resources>

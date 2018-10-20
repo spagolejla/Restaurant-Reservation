@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+
+        android:id="@+id/navigation_header_container"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/colorPrimary"
+        >
+
+        <ImageView
+            android:id="@+id/img_pro"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerInParent="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_profile"
+            />
+
+        <TextView
+            android:id="@+id/txtImePrezime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="25dp"
+            android:fontFamily="@font/roboto"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:scaleType="fitCenter"
+            android:text="Lejla Špago"
+            android:textColor="@color/white" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txtUsernameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/navigation_header_container"
+        android:layout_weight="1"
+        android:text="Korisničko ime:"
+        android:textColor="@color/grey_800"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/txtUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtUsernameLabel"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/roboto"
+        android:text="Lejla"
+        android:textColor="@color/grey_800" />
+
+
+    <TextView
+        android:id="@+id/txtPasswordLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtUsername"
+        android:layout_weight="1"
+        android:text="Lozinka:"
+        android:textColor="@color/grey_800"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto"
+        android:textSize="18dp"
+        android:textStyle="bold"
+
+        />
+
+    <TextView
+        android:id="@+id/txtPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtPasswordLabel"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/roboto"
+        android:text="test"
+        android:textColor="@color/grey_800" />
+
+    <TextView
+        android:id="@+id/txtEmailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtPassword"
+        android:layout_weight="1"
+        android:text="Mail:"
+        android:textColor="@color/grey_800"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto"
+        android:textSize="18dp"
+        android:textStyle="bold"
+
+        />
+
+    <TextView
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtEmailLabel"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/roboto"
+        android:text="lejla.spago@edu.fit.ba"
+        android:textColor="@color/grey_800" />
+</RelativeLayout>
