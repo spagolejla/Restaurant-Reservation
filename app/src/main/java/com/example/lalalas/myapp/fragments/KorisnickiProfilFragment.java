@@ -2,28 +2,33 @@ package com.example.lalalas.myapp.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.lalalas.myapp.R;
 import com.example.lalalas.myapp.helper.MyFragmentUtils;
 import com.example.lalalas.myapp.helper.MyRunnable;
+import com.example.lalalas.myapp.helper.MySession;
+import com.example.lalalas.myapp.model.AutentifikacijaResultVM;
 import com.example.lalalas.myapp.model.Korisnik;
-import com.example.lalalas.myapp.model.Restoran;
+import com.example.lalalas.myapp.model.KorisnikAddVM;
+import com.example.lalalas.myapp.model.KorisnikPregledVM;
 
 
 public class KorisnickiProfilFragment extends Fragment {
+//dodati kasnije da se moze promjeniti password
+    private TextView txtKorisnik;
+    private TextView txtUsername;
+    private TextView txtPassword;
+    private TextView txtMail;
+   private Button btnChanePass;
 
 
 
-    public static final String NEKI_KEY = "neki_key";
-
-    private MyRunnable<Korisnik> callback;
-
-
+    AutentifikacijaResultVM x = MySession.getKorisnik();
 
 
     public KorisnickiProfilFragment() {
@@ -31,11 +36,11 @@ public class KorisnickiProfilFragment extends Fragment {
     }
 
 
-    public static KorisnickiProfilFragment newInstance(MyRunnable myCallback) {
+    public static KorisnickiProfilFragment newInstance() {
 
         KorisnickiProfilFragment fragment=new KorisnickiProfilFragment();
         Bundle args=new Bundle();
-        args.putSerializable(NEKI_KEY,myCallback);
+
         fragment.setArguments(args);
        // args.putString(ARG_PARAM1, param1);
         //args.putString(ARG_PARAM2, param2);
@@ -48,7 +53,7 @@ public class KorisnickiProfilFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            callback = (MyRunnable<Korisnik>) getArguments().getSerializable(NEKI_KEY);
+
         }
 
 
@@ -61,7 +66,29 @@ public class KorisnickiProfilFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_korisnicki_profil, container, false);
+        txtKorisnik=view.findViewById(R.id.txtImePrezime);
+        txtUsername=view.findViewById(R.id.txtUsername);
+        txtPassword=view.findViewById(R.id.txtPassword);
+        txtMail=view.findViewById(R.id.txtEmail);
+        btnChanePass=view.findViewById(R.id.btnChangePassword);
 
+
+
+
+        txtKorisnik.setText(x.ime+" "+x.prezime);
+        txtUsername.setText(x.username);
+        txtPassword.setText("*****");
+        txtMail.setText(x.mail);
+
+        final KorisnikPregledVM.Row korisnik=new KorisnikPregledVM.Row();
+          korisnik.korisnickiNalogId=x.korisnickiNalogId;  korisnik.ime=x.ime; korisnik.prezime=x.prezime;korisnik.password=x.password;korisnik.email=x.mail;
+
+        btnChanePass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MyFragmentUtils.openAsReplace(getActivity(),R.id.mjestoFragment,KorisnikUpdateFragment.newInstance(korisnik));
+            }
+        });
 
         return view;
 

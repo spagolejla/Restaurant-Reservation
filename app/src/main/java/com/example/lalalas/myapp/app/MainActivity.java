@@ -1,5 +1,6 @@
 package com.example.lalalas.myapp.app;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,32 +12,44 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.app.Fragment;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.lalalas.myapp.R;
-import com.example.lalalas.myapp.fragments.BlankFragment;
 import com.example.lalalas.myapp.fragments.HelpFragment;
 import com.example.lalalas.myapp.fragments.KorisnickiProfilFragment;
 import com.example.lalalas.myapp.fragments.RestoranListFragment;
 import com.example.lalalas.myapp.fragments.RezervacijaListFragment;
 import com.example.lalalas.myapp.helper.MyFragmentUtils;
 import com.example.lalalas.myapp.helper.MySession;
+import com.example.lalalas.myapp.model.AutentifikacijaResultVM;
+import com.example.lalalas.myapp.model.Korisnik;
+import com.example.lalalas.myapp.model.KorisnikPregledVM;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     private DrawerLayout mDrawerLayout;
+    private TextView txtKorinsik;
+    private TextView txtMailKorisnik;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
-
-
-setUpToolbar();
-//setUpDrawer();
+        AutentifikacijaResultVM x = MySession.getKorisnik();
+        setUpToolbar();
         mDrawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
+        View headerView = navigationView.getHeaderView(0); //kako pristupiti nav_headeru
+        txtKorinsik=headerView.findViewById(R.id.txtImePrezime);
+        txtMailKorisnik=headerView.findViewById(R.id.txtMail);
+
+        AutentifikacijaResultVM prijavljeniKorisnik = MySession.getKorisnik();
+
+     txtKorinsik.setText(prijavljeniKorisnik.ime+" "+prijavljeniKorisnik.prezime);
+     txtMailKorisnik.setText(x.mail);
+
 
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -84,6 +97,20 @@ setUpToolbar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
 
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.Refresh:
+                        Intent in1=new Intent(MainActivity.this, GlavniActivity.class);
+                        startActivity(in1);
+                        finish();
+                }
+                return  true;
+            }
+
+        });
+
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -117,7 +144,7 @@ setUpToolbar();
                 break;
             default:
                 fragmentClass = RestoranListFragment.class;
-                //MySession.setKorisnik(this,null);
+                MySession.setKorisnik(null);
                 startActivity(new Intent(this, LoginActivity.class));
 
         }

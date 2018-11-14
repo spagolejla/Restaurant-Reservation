@@ -5,5 +5,5 @@ import android.net.Uri;
 
 public class MyConfig {
 
-    public static Uri baseUrl  = Uri.parse("http://10.10.10.18/api/");
+    public static Uri baseUrl  = Uri.parse("https://rks1640.app.fit.ba/api/");
 }

@@ -2,35 +2,37 @@ package com.example.lalalas.myapp.fragments;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatImageButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.lalalas.myapp.R;
+import com.example.lalalas.myapp.helper.MyApiRequest;
 import com.example.lalalas.myapp.helper.MyFragmentUtils;
-import com.example.lalalas.myapp.model.Restoran;
-import com.example.lalalas.myapp.model.Rezervacija;
 import com.example.lalalas.myapp.helper.MyRunnable;
+import com.example.lalalas.myapp.helper.MySession;
+import com.example.lalalas.myapp.model.AutentifikacijaResultVM;
+import com.example.lalalas.myapp.model.KorisnikPregledVM;
+import com.example.lalalas.myapp.model.Restoran;
+import com.example.lalalas.myapp.model.RestoranPregledVM;
+import com.example.lalalas.myapp.model.Rezervacija;
+import com.example.lalalas.myapp.model.RezervacijaAddVM;
 import com.example.lalalas.myapp.model.Storage;
 
-import java.text.BreakIterator;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -46,7 +48,7 @@ public class RezervacijaAddFragment extends Fragment  {
     private EditText txtVrijeme;
 
     private EditText txtBrojOsoba;
-    private List<Restoran> restorani;
+    private RestoranPregledVM Restorani;
     private AppCompatImageButton btnDatePicker;
     private AppCompatImageButton btnTimePicker;
 
@@ -83,7 +85,7 @@ public class RezervacijaAddFragment extends Fragment  {
         txtVrijeme=view.findViewById(R.id.txtVrijeme);
         btnTimePicker=view.findViewById(R.id.btnTimePicker);
         btnDatePicker=view.findViewById(R.id.btnDatePicker);
-btnDatePicker.setOnClickListener(new View.OnClickListener() {
+        btnDatePicker.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
         c=Calendar.getInstance();
@@ -94,7 +96,8 @@ btnDatePicker.setOnClickListener(new View.OnClickListener() {
         dpd=new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int mYear, int mMonth, int mDay) {
-                txtDatum.setText(mDay+"."+(mMonth+1)+"."+mYear);
+               // txtDatum.setText(mDay+"."+(mMonth+1)+"."+mYear); //yyyyy-mm-dd
+                txtDatum.setText(mYear+"-"+(mMonth+1)+"-"+mDay);
             }
         },day,month,year);
         dpd.show();
@@ -126,41 +129,87 @@ btnTimePicker.setOnClickListener(new View.OnClickListener() {
             }
         });
 
-        popuniPodatke();
+        popuniPodatkeTask();
 
         return view;
     }
 
-    private List<String> getRestoraniString()
+
+    private void popuniPodatkeTask() {
+        MyApiRequest.get(getActivity(),"Restoran/Index", new MyRunnable<RestoranPregledVM>() {
+            @Override
+            public void run(RestoranPregledVM x) {
+                popuniPodatke (x);
+            }
+        });
+
+
+
+
+    }
+
+    private void popuniPodatke(RestoranPregledVM x) {
+        Restorani=x;
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, getRestoraniString(x));
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerRestoran.setAdapter(dataAdapter);
+    }
+
+    private List<String> getRestoraniString(RestoranPregledVM restorani)
     {
+
         List<String> result = new ArrayList<>();
 
-        for (Restoran x : restorani) {
-            result.add(x.getTitle() + " " + x.getCity());
+        for (RestoranPregledVM.Row x : restorani.rows) {
+            result.add(x.naziv + " " + x.grad);
         }
 
         return result;
     }
 
-    private void popuniPodatke() {
-        restorani = Storage.getRestorani();
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, getRestoraniString());
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerRestoran.setAdapter(dataAdapter);
+    private void do_btnDodaj() {
+
+
+        AutentifikacijaResultVM prijavljeniKorisnik = MySession.getKorisnik();
+        SpremiRezervaciju();
+
+
 
 
     }
 
-    private void do_btnDodaj() {
+    private void SpremiRezervaciju()  {
+
+
         int position = spinnerRestoran.getSelectedItemPosition();
-        Restoran x = restorani.get(position);
+        RestoranPregledVM.Row restoran = Restorani.rows.get(position);
+AutentifikacijaResultVM kor=MySession.getKorisnik();
 
-    //    Rezervacija rezervacija = new Rezervacija(txtVrstaRezervacije.getText().toString(),Storage.getKorisnici().get(0),x, 7);
 
-        Rezervacija rezervacija=new Rezervacija(txtVrstaRezervacije.getText().toString(),Storage.getKorisnici().get(0),x,Integer.parseInt(txtBrojOsoba.getText().toString()),txtDatum.getText().toString(),txtVrijeme.getText().toString());
-        Storage.addRezervacija(rezervacija);
 
-        MyFragmentUtils.openAsReplace(getActivity(),R.id.mjestoFragment,RezervacijaListFragment.newInstance());
+
+        RezervacijaAddVM novaRezervacija= new RezervacijaAddVM();
+
+
+try {
+
+    novaRezervacija.vrsta=txtVrstaRezervacije.getText().toString();
+    novaRezervacija.datum= txtDatum.getText().toString();
+    novaRezervacija.vrijeme= txtVrijeme.getText().toString();
+    novaRezervacija.korsnikId=kor.korisnikId ;
+    novaRezervacija.restoranId=restoran.id;
+    novaRezervacija.brojOsoba=Integer.parseInt(txtBrojOsoba.getText().toString());
+
+
+    MyApiRequest.post(getActivity(), "Rezervacija/Add", novaRezervacija, null);
+    Toast.makeText(getActivity(), "Uspješno ste izvršili rezervaciju!", Toast.LENGTH_LONG).show();
+
+    MyFragmentUtils.openAsReplace(getActivity(),R.id.mjestoFragment,RezervacijaListFragment.newInstance());
+}catch (Exception e){
+    Toast.makeText(getActivity(), "Greška! Sva polja moraju biti popunjena!", Toast.LENGTH_LONG).show();
+
+}
+
 
 
     }

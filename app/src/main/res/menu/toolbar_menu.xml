@@ -4,8 +4,8 @@
 
 
     <item
-        android:id="@+id/Exit"
-        android:title="@string/Exit"
+        android:id="@+id/Refresh"
+        android:title="@string/Refresh"
         android:orderInCategory="1"
         app:showAsAction="never"
 

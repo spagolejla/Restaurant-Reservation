@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".app.RegistrationActivity"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registracija"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:layout_marginBottom="40dp"
+
+        />
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/txtImeKorisnik"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ime"
+            android:inputType="text"
+            android:fontFamily="@font/roboto"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/txtPrezimeKorisnik"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Prezime"
+            android:inputType="text"
+            android:fontFamily="@font/roboto"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/txtMailKorisnik"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mail"
+            android:inputType="text"
+            android:fontFamily="@font/roboto"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/txtPasswordKorisnik"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:fontFamily="@font/roboto"
+        />
+
+</android.support.design.widget.TextInputLayout>
+    <Button
+        android:id="@+id/btnReg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Registruj se"
+        android:textColor="@color/icons"
+        android:background="@drawable/button_rounded"
+        android:fontFamily="@font/roboto"
+        />
+
+
+
+
+
+</LinearLayout>

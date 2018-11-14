@@ -2,134 +2,104 @@ package com.example.lalalas.myapp.helper;
 
 import android.util.Log;
 
+import com.example.lalalas.myapp.model.AutentifikacijaResultVM;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class MyUrlConnection {
+public class MyUrlConnection
+{
+    public enum HttpMethod
+    {
+        GET, POST, HEAD, OPTIONS, PUT, DELETE, TRACE
+    }
 
-    private static final String TAG = "MyUrlConnection";
 
-    public static String Get(String urlString) {
+    public static MyApiResult request(String urlString, HttpMethod httpMethod, String postData, String contentType) {
 
-        HttpURLConnection urlConnection = null;
+        HttpURLConnection connection = null;
 
-        String result = null;
+        String charset = "UTF-8";
+
         try {
             URL url = new URL(urlString);
 
-            urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setDoInput(true);
-            urlConnection.setDoOutput(true);
-            urlConnection.setRequestProperty("Content-Type", "application/json");
-            urlConnection.setRequestMethod("GET");
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
 
+            connection.setRequestProperty("Content-Type", contentType);
+            connection.setRequestProperty("Accept", contentType);
+            connection.setRequestProperty("Accept-Charset", charset);
 
-            int statusCode = urlConnection.getResponseCode();
+            AutentifikacijaResultVM korisnik = MySession.getKorisnik();
+            connection.setRequestProperty("MyAuthToken", korisnik !=null? korisnik.token:"");
 
-            if (statusCode ==  200) {
+            connection.setRequestMethod(httpMethod.toString());
+            connection.setUseCaches(false);
+            connection.setAllowUserInteraction(false);
 
-                InputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
-
-                String response = convertToString(inputStream);
-
-                return  response;
-            } else {
-                // Status code is not 200
-                // Do something to handle the error
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        finally {
-            if (urlConnection != null) {
-                urlConnection.disconnect();
-            }
-        }
-
-        return result;
-    }
-
-    public static String Post(String urlString, String postData) {
-        HttpURLConnection urlConnection=null;
-
-        try
-        {
-            // This is getting the url from the string we passed in
-            URL url = new URL(urlString);
-
-            // Create the urlConnection
-            urlConnection = (HttpURLConnection) url.openConnection();
-
-            urlConnection.setDoInput(true);
-            urlConnection.setDoOutput(true);
-
-            urlConnection.setRequestProperty("Content-Type", "application/json");
-
-            urlConnection.setRequestMethod("POST");
-
-
-            // OPTIONAL - Sets an authorization header
-          //  urlConnection.setRequestProperty("Authorization", "someAuthString");
+            connection.setDoOutput(false);
 
             // Send the post body
             if (postData != null) {
-                OutputStreamWriter writer = new OutputStreamWriter(urlConnection.getOutputStream());
-                writer.write(postData.toString());
-                writer.flush();
+                connection.setDoOutput(true);
+                byte[] outputBytes = postData.getBytes(charset);
+                OutputStream os = connection.getOutputStream();
+                os.write(outputBytes);
+                os.flush();
+                os.close();
             }
 
-            int statusCode = urlConnection.getResponseCode();
+            int statusCode = connection.getResponseCode();
 
             if (statusCode ==  200) {
 
-                InputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
+                InputStream inputStream = new BufferedInputStream(connection.getInputStream());
 
                 String response = convertToString(inputStream);
 
-                return  response;
+                return  MyApiResult.OK(response);
             } else {
                 // Status code is not 200
                 // Do something to handle the error
+                //    InputStream inputStream = new BufferedInputStream(connection.getErrorStream());
+                String response = connection.getResponseMessage();
+                return MyApiResult.Error(statusCode, response);
             }
 
         } catch (Exception e) {
-            Log.d(TAG, e.getLocalizedMessage());
+            e.printStackTrace();
+            return MyApiResult.Error(0, e.getMessage());
         }
         finally {
-            if (urlConnection != null) {
-                urlConnection.disconnect();
+            if (connection != null) {
+                connection.disconnect();
             }
         }
-        return null;
     }
 
-    private static String convertToString(InputStream in) {
+
+
+    private static String convertToString(InputStream in) throws IOException {
         BufferedReader reader = null;
         StringBuilder response = new StringBuilder();
-        try {
-            reader = new BufferedReader(new InputStreamReader(in));
-            String line = "";
-            while ((line = reader.readLine()) != null) {
-                response.append(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+
+        reader = new BufferedReader(new InputStreamReader(in));
+        String line = "";
+        while ((line = reader.readLine()) != null) {
+            response.append(line);
         }
+
+        reader.close();
+
         return response.toString();
     }
 }
+

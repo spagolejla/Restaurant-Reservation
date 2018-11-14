@@ -19,8 +19,6 @@
             android:id="@+id/img"
             android:layout_width="match_parent"
             android:layout_height="189dp"
-
-
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:src="@drawable/resraurant_detail" />

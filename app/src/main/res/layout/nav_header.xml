@@ -5,37 +5,34 @@
     android:id="@+id/navigation_header_container"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/resraurant_detail"
     >
 
-    <ImageView
-        android:id="@+id/img_pro"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_centerInParent="true"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_profile"
-        />
 
     <TextView
         android:id="@+id/txtImePrezime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/img_pro"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="36dp"
+
+        android:layout_marginStart="14dp"
         android:fontFamily="@font/roboto"
-        android:paddingLeft="16dp"
+
         android:text="Lejla Špago"
-        android:textColor="@color/white"
-        android:layout_marginTop="8dp"
-        />
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/txtMail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/txtImePrezime"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="-34dp"
         android:fontFamily="@font/roboto"
-        android:paddingLeft= "16dp"
+
         android:text="lejla.spago@edu.fit.ba"
         android:textColor="@color/white" />
 </RelativeLayout>

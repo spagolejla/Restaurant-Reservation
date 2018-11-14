@@ -14,8 +14,12 @@ public class MyFragmentUtils {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         fragmentTransaction.replace(id, fragment);
-        fragmentTransaction.addToBackStack(null).commit();
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
-
+    public static void openAsDialog(Activity activity, DialogFragment dlg) {
+        FragmentManager fm = activity.getFragmentManager();
+        dlg.show(fm, "nekitag");
+    }
 }

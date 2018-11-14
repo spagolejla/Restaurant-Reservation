@@ -3,7 +3,6 @@ import com.example.lalalas.myapp.R;
 import com.example.lalalas.myapp.helper.MyObjects;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Storage {
@@ -29,7 +28,8 @@ public class Storage {
       return restorani;
   }
 
-    private static int[] getImages() {
+    public static int[] getImages() {
+
 
         int[] images = {R.drawable.hindin_han_tn,R.drawable.malta_tn,R.drawable.marrinero_tn,R.drawable.bella_tn
                 ,R.drawable.han_tn,R.drawable.orlando_tn,R.drawable.italiano_tn,R.drawable.kuluk_tn,R.drawable.novalica_kula_tn
@@ -43,7 +43,7 @@ public class Storage {
   public  static List<Korisnik> getKorisnici(){
       if (korisnici==null){
           korisnici=new ArrayList<>();
-          korisnici.add(new Korisnik(1,"Lejla","test","Lejla","Spago","lejla.spago@edu.fit.ba"));
+          korisnici.add(new Korisnik(1,"Lejla","Spago","Lejla","test","lejla.spago@edu.fit.ba"));
           korisnici.add(new Korisnik(2,"Melisa","test","Melisa","Dzeko","melisa.dzeko@edu.fit.ba"));
           korisnici.add(new Korisnik(3,"Šejla","test","Šejla","Špago","sejla.spago@edu.fit.ba"));
           korisnici.add(new Korisnik(4,"Jasmina","test","Jasmina","Špago","jejla.spago@edu.fit.ba"));
